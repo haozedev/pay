@@ -35,7 +35,8 @@ public class PayController {
 	}
 
 	@PostMapping("/notify")
-	public void asyncNotify(@RequestBody String notifyData) {
-		payService.asyncNotify(notifyData);
+	@ResponseBody
+	public String asyncNotify(@RequestBody String notifyData) {
+		return payService.asyncNotify(notifyData);
 	}
 }

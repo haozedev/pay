@@ -48,7 +48,7 @@ public class PayService implements IPayService {
 	 * @param notifyData
 	 */
 	@Override
-	public void asyncNotify(String notifyData) {
+	public String asyncNotify(String notifyData) {
 		//1. 签名检验
 		PayResponse payResponse = bestPayService.asyncNotify(notifyData);
 		log.info("payResponse={}", payResponse);
@@ -56,5 +56,11 @@ public class PayService implements IPayService {
 		//2. 金额校验（从数据库查订单）
 
 		//3. 修改订单支付状态
+
+		//4. 告诉微信不要再通知了
+		return "<xml>\n" +
+				"  <return_code><![CDATA[SUCCESS]]></return_code>\n" +
+				"  <return_msg><![CDATA[OK]]></return_msg>\n" +
+				"</xml>";
 	}
 }

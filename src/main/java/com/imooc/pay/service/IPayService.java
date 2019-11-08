@@ -18,5 +18,5 @@ public interface IPayService {
 	 * 异步通知处理
 	 * @param notifyData
 	 */
-	void asyncNotify(String notifyData);
+	String asyncNotify(String notifyData);
 }
